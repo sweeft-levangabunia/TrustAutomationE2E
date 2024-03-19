@@ -1,4 +1,4 @@
-# install playwright with npm:
+install playwright with npm:
 npm init playwright@latest
 
 add visual studio extension to run tests:
