@@ -63,7 +63,6 @@ export async function CreateWorkbench(page, contentFlow) {
     await frame.locator(xpaths.PDGContentFlowWorkbenchNext).click()
 
     await frame.locator(xpaths.PDGContentFlowWorkbenchSchedulingOptions).click()
-    await frame.locator(xpaths.PDGContentFlowWorkbenchNext).click()
 
     await frameWait.waitForSelector(xpaths.PDGContentFlowWorkbenchLoadSavedConfiguration);
     await frame.locator(xpaths.PDGContentFlowWorkbenchTemplateType).click()
@@ -292,6 +291,10 @@ export async function UpdateWorkbench(page, updatecontentFlow) {
     await frame.locator(xpaths.PDGContentFlowWorkbenchNext).click()
 
     await frame.locator(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeek).click()
+    await frame.locator(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeekInputTime).click()
+    await frame.locator(sprintf(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeekInputTimeValue, updatecontentFlow.Time)).click()
+    await frame.locator(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeekInputTimezone).click()
+    await frame.locator(sprintf(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeekInputTimezoneValue, updatecontentFlow.TimeZone)).click()
     await frame.locator(xpaths.PDGContentFlowWorkbenchNext).click()
 
     await frame.locator(xpaths.PDGContentFlowWorkbenchTemplateType).click()
@@ -342,7 +345,7 @@ export async function UpdateWorkbench(page, updatecontentFlow) {
     await frame.locator(xpaths.PDGContentFlowWorkbenchMaxExtraPromptAdd).click()
     await frame.locator(xpaths.PDGContentFlowWorkbenchMaxSavePipeline).click()
 
-    // await frameWait.waitForSelector(xpaths.PDGContentFlowWorkbenchMaxSuccesfullyMsg, xpaths.VisibleState);
+    await frameWait.waitForSelector(xpaths.PDGContentFlowWorkbenchMaxSuccesfullyMsg, xpaths.VisibleState);
 }
 
 export async function Active(page, contentFlow) {

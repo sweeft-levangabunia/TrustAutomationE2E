@@ -55,4 +55,6 @@ export const UpdateContentFlow = {
     EmptyValue: "-",
     Metrics: "10",
     HITLOn: "HITL On",
+    Time: "00:00",
+    TimeZone: "GMT",
 }
