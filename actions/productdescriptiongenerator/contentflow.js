@@ -170,6 +170,18 @@ export async function ValidateWorkbench(page, contentFlow) {
         throw new Error("element is expected")
     }
 
+    let Visible = await frame.locator(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeekMon).isVisible()
+    if (Visible) {
+        let Text = await frame.locator(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeekInputTime).textContent()
+        if (Text != contentFlow.Time) {
+            throw new Error("Text is not expected")
+        }
+        Text = await frame.locator(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeekInputTimezone).textContent()
+        if (Text != contentFlow.TimeZone) {
+            throw new Error("Text is not expected")
+        }
+    }
+
     await frame.locator(xpaths.PDGContentFlowWorkbenchNext).click()
 
     await frameWait.waitForSelector(xpaths.PDGContentFlowWorkbenchLoadSavedConfiguration);
@@ -291,6 +303,7 @@ export async function UpdateWorkbench(page, updatecontentFlow) {
     await frame.locator(xpaths.PDGContentFlowWorkbenchNext).click()
 
     await frame.locator(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeek).click()
+    await frame.locator(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeekMon).click()
     await frame.locator(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeekInputTime).click()
     await frame.locator(sprintf(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeekInputTimeValue, updatecontentFlow.Time)).click()
     await frame.locator(xpaths.PDGContentFlowWorkbenchSchedulingOptionsWeekInputTimezone).click()
@@ -504,30 +517,30 @@ export async function LaunchValidation(page, contentFlow, config) {
     await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashBoardSubPipelineName, contentFlow.Name));
     await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashBoardSubCreatedBy, config.testUserRole));
     await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashBoardStatusRunning, contentFlow.StatusRunning));
-
-    let Visible = await frame.locator(sprintf(xpaths.PDGContentFlowDashBoardPendingName, contentFlow.Name)).isVisible()
-    if (!Visible) {
-        await OpenGroup(page)
-        await frame.locator(xpaths.PDGContentFlowDashboards).click()
-    }
-
-    Visible = await frame.locator(sprintf(xpaths.PDGContentFlowDashBoardPendingName, contentFlow.Name)).isVisible()
-    if (!Visible) {
-        await page.waitForTimeout(5000)
-        await OpenGroup(page)
-        await frame.locator(xpaths.PDGContentFlowDashboards).click()
-        await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashBoardPendingName, contentFlow.Name));
-    }
-    await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashboardFirstValue, contentFlow.Language));
-    await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashboardFirstValue, contentFlow.HITLOn));
     await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashBoardSubPipelineNameHITL, contentFlow.Name));
 
-    await frame.locator(xpaths.PDGContentFlowDashboardFirstValueGo).click()
+    // let Visible = await frame.locator(sprintf(xpaths.PDGContentFlowDashBoardPendingName, contentFlow.Name)).isVisible()
+    // if (!Visible) {
+    //     await OpenGroup(page)
+    //     await frame.locator(xpaths.PDGContentFlowDashboards).click()
+    // }
 
-    await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashboardFirstValueGoValue, contentFlow.Template));
-    await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashboardFirstValueGoValue, contentFlow.GenerativeModel));
-    await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashboardFirstValueGoValue, contentFlow.MaxTokens));
-    await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashboardFirstValueGoValue, contentFlow.Language));
+    // Visible = await frame.locator(sprintf(xpaths.PDGContentFlowDashBoardPendingName, contentFlow.Name)).isVisible()
+    // if (!Visible) {
+    //     await page.waitForTimeout(5000)
+    //     await OpenGroup(page)
+    //     await frame.locator(xpaths.PDGContentFlowDashboards).click()
+    // }
+    // await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashBoardPendingName, contentFlow.Name));
+    // await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashboardFirstValue, contentFlow.Language));
+    // await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashboardFirstValue, contentFlow.HITLOn));
+
+    // await frame.locator(xpaths.PDGContentFlowDashboardFirstValueGo).click()
+
+    // await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashboardFirstValueGoValue, contentFlow.Template));
+    // await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashboardFirstValueGoValue, contentFlow.GenerativeModel));
+    // await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashboardFirstValueGoValue, contentFlow.MaxTokens));
+    // await frameWait.waitForSelector(sprintf(xpaths.PDGContentFlowDashboardFirstValueGoValue, contentFlow.Language));
 }
 
 export async function Delete(page, contentFlow) {

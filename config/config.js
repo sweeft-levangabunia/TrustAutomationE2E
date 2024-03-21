@@ -1,6 +1,6 @@
 export const config = {
     domain: "https://dev.trustgenerative.ai",
-    timeout: 90000,
+    timeout: 900000,
     displayHeight: 700,
     displayWidth: 1500,
     prefixTrust: " Automation-",

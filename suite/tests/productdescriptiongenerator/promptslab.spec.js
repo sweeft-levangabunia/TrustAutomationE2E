@@ -37,10 +37,10 @@ test('Test Promptslab Smoke', async ({page}) => {
         await OpenManagerConfig(page)
         await ExperimentValidate(page, Promptslab, config);
     })
-    // await test.step("Promptslab Validate Experiment", async () => {
-    //     await Open(page)
-    //     await Validate(page, Promptslab, config);
-    // })
+    await test.step("Promptslab Validate Experiment", async () => {
+        await Open(page)
+        await Validate(page, Promptslab, config);
+    })
     await test.step("Promptslab Update Group", async () => {
         await OpenGroups(page)
         await UpdateGroup(page, UpdatePromptslab);

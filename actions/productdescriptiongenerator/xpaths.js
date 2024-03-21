@@ -107,6 +107,7 @@ const xpaths = {
     PDGContentFlowWorkbenchSchedulingOptionsWeekInputTimezone: `(//div[@class="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-dfo3wy"])[2]`,
     PDGContentFlowWorkbenchSchedulingOptionsWeekInputTimeValue: `//li[normalize-space()='%s']`,
     PDGContentFlowWorkbenchSchedulingOptionsWeekInputTimezoneValue: `//li[normalize-space()='%s']`,
+    PDGContentFlowWorkbenchSchedulingOptionsWeekMon: `//span[@class='MuiTypography-root MuiTypography-labelLarge css-i61lve']`,
     PDGContentFlowWorkbenchSchedulingOptionsDaily: `//button[normalize-space()='Daily']`,
     PDGContentFlowWorkbenchSchedulingOptionsWeekTimezone: `//div[@class='MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1c61h9e']//div[@id='select-undefined']`,
     PDGContentFlowWorkbenchTemplateType: `//div[@id="select-Template type"]`,
